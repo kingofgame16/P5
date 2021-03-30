@@ -49,10 +49,10 @@ const inHtml = document.getElementById('main');
 const addBasketBtnElement = document.querySelector('#btnAddBasket')
     const monProduit = {
         id: 1,
-        name: 'nomproduit',
-        description: 'madescription',
+        name: 'data.name',
+        description: 'data.description',
         price: 1000,
-        imageUrl: 'monprouit.jpeg',
+        imageUrl: 'data.imageUrl',
         quantity: 1
     }
     addBasketBtnElement.addEventListener('click', () => {
