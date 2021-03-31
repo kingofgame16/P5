@@ -47,7 +47,7 @@ const inHtml = document.getElementById('main');
         })
 
 const addBasketBtnElement = document.querySelector('#btnAddBasket')
-    const monProduit = {
+    const innerHTML = {
         id: 1,
         name: 'data.name',
         description: 'data.description',
@@ -57,7 +57,7 @@ const addBasketBtnElement = document.querySelector('#btnAddBasket')
     }
     addBasketBtnElement.addEventListener('click', () => {
         alert ('Produit bien ajouté au panier')
-        addLocalStorage(monProduit)
+        addLocalStorage(innerHTML)
     })
 
 const addLocalStorage = (product) => {
