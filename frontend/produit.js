@@ -54,20 +54,20 @@ fetch(`http://localhost:3000/api/furniture/${params.get('id')}`)
         alert ('Produit bien ajouté au panier')
         addLocalStorage(productSelected)
     })
-  })
+})
 
 const addLocalStorage = (product) => {
-  if (localStorage.getItem('basket') === null) {
-      localStorage.setItem('basket', JSON.stringify([product]))
-  } else {
+    if (localStorage.getItem('basket') === null) {
+        localStorage.setItem('basket', JSON.stringify([product]))
+    } else {
     const basket = JSON.parse(localStorage.getItem('basket'));
     const productAlreadySelected = basket.filter(prod => prod.id == product.id)
     if (productAlreadySelected.length > 0) {
-      productAlreadySelected[0].quantity++
+        productAlreadySelected[0].quantity++
     } else {
-      basket.push(product)
+    basket.push(product)
     }
     // Il ne faut pas oublier de sauvegarder les données
     localStorage.setItem('basket', JSON.stringify(basket))
-  }
+}
 }
