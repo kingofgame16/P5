@@ -32,8 +32,6 @@ const inHtml = document.getElementById('main');
                         <h2>${data.name}</h2>
                         <p>${data.description}</p>
                         <form>
-                            <label for="quantiteProduit">Quantité:</label>
-                            <input id ="quantiteProduit" type="number" min="1" value="1"/>
                                 <div class="col-auto my-1 pb-5 mt-4">
                                     <label class="mr-sm-2" for="inlineFormCustomSelect">Vernis</label>
                                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
@@ -44,29 +42,32 @@ const inHtml = document.getElementById('main');
                         </form>   
                     </div>
                     `;
+                    
+                    let productSelected = {
+                        id: data._id,
+                        name: data.name,
+                        price: data.price,
+                        description: data.description,
+                        imageUrl: data.imageUrl,
+                        quantity: 1
+                    }
+                    const addBasketBtnElement = document.querySelector('#btnAddBasket')
+                    addBasketBtnElement.addEventListener('click', () => {
+                        alert ('Produit bien ajouté au panier')
+                        addLocalStorage(productSelected)
+                    })
+                    
         })
 
-const addBasketBtnElement = document.querySelector('#btnAddBasket')
-    const innerHTML = {
-        id: 1,
-        name: 'data.name',
-        description: 'data.description',
-        price: 1000,
-        imageUrl: 'data.imageUrl',
-        quantity: 1
-    }
-    addBasketBtnElement.addEventListener('click', () => {
-        alert ('Produit bien ajouté au panier')
-        addLocalStorage(innerHTML)
-    })
+
+
 
 const addLocalStorage = (product) => {
-    let basketFull = JSON.parse(localStorage.getItem("basket"));
+    let basket = JSON.parse(localStorage.getItem("basket"));
 
-    if (!basketFull) {
+    if (!basket) {
         localStorage.setItem("basket", JSON.stringify([product]))
     } else {
-        const basket = JSON.parse(localStorage.getItem("basket"))
         const productAlreadySelected = basket.filter(p => p.id === product.id)
         if (productAlreadySelected.length > 0) {
             productAlreadySelected[0].quantity++
@@ -76,10 +77,3 @@ const addLocalStorage = (product) => {
     }
 }
 
-function calculePrice(priceProdUnit) {
-    let quantites = document.getElementById('quantiteProduit');
-    quantites.addEventListener('change', (event) => {
-        const result = document.getElementById('totalPrice');
-        result.textContent = `${priceProdUnit}` * `${event.target.value}`;
-    })
-}
