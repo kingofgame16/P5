@@ -51,45 +51,34 @@
     
     
         <form class="container" method="POST" id="submitForm">
-            <div class="form-group">
-                <label for="prenom">Prénom :</label>
-                <input type="text" name="prenom" placeholder=" Votre Prénom " class="col-5 " minlength="2 " id="prenom ">
-    
-    
+            <div class="mb-3">
+                <label for="FirstName" class="form-label">Prénom :</label>
+                <input type="text" name="prenom" placeholder=" Votre Prénom" class="form-control" minlength="2" id="FirstName">
             </div>
     
-            <div class="form-group ">
-                <label for="nom ">Nom :</label>
-                <input type="text " name="nom " placeholder="Votre Nom " class="col-5 " minlength="3 " id="nom ">
-    
-    
+            <div class="mb-3 ">
+                <label for="LastName" class="form-label">Nom :</label>
+                <input type="text" name="nom" placeholder="Votre Nom" class="form-control" minlength="3" id="LastName">
             </div>
     
-            <div class="form-group ">
-                <label for="adresse ">Adresse :</label>
-                <input type="text " name="adresse " placeholder="Votre Adresse " class="col-6 " minlength="8 " id="adresse ">
-    
-    
+            <div class="mb-3">
+                <label for="Adress" class="form-label">Adresse :</label>
+                <input type="text" name="adresse" placeholder="Votre Adresse" class="form-control" minlength="8" id="adresse">
+            </div>
+
+            <div class="mb-3">
+                <label for="City" class="form-label">Ville :</label>
+                <input type="text" name="ville" placeholder="Votre Ville" class="form-control" minlength="1" id="City">
             </div>
     
-            <div class="form-group ">
-                <label for="ville ">Ville :</label>
-                <input type="text " name="ville " placeholder="Votre Ville " class="col-6 " minlength="1 " id="ville ">
-    
-    
-            </div>
-    
-            <div class="form-group ">
-                <label for="email ">Email :</label>
-                <input type="email " name="email " placeholder="Votre Email " class="col-6 " id="email ">
-    
-    
+            <div class="mb-3">
+                <label for="InputEmail" class="form-label">Email :</label>
+                <input type="email" class="form-control" placeholder="Votre email" id="InputEmail" aria-describedby="emailHelp">
             </div>
     
             <div class="form-group ">
                 <button id="btnCom " type="submit " class="btn btn-outline-info btn-block ">Commander</button>
             </div>
-    
         </form>
     </body>
 </html>
