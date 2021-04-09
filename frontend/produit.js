@@ -69,5 +69,7 @@ const addLocalStorage = (product) => {
     }
     // Il ne faut pas oublier de sauvegarder les données
     localStorage.setItem('basket', JSON.stringify(basket))
+
+    window.location.href = 'panier.html';
 }
 }

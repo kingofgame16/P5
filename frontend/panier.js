@@ -1,10 +1,10 @@
 let data = JSON.parse(localStorage.getItem("basket"));
 
-const Element3 = document.getElementById("main");
-const prix = document.getElementById("finalPrice");
+const Element3 = document.querySelector("main");
+const prix = document.querySelector("finalPrice");
 
 if (localStorage.length > 0) {
-    prix.innerHTML = calculPrixPanier() + " € (euros)"; //rappel fonction prix total
+    prix.innerHTML = calculPrixPanier() + " € (euros)"; 
 
     data.forEach((objet) => {
         Element3.innerHTML += `
