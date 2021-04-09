@@ -1,7 +1,7 @@
-let data = JSON.parse(localStorage.getItem("basket"));
+let data = JSON.parse(localStorage.getItem('basket'));
 
-const Element3 = document.getElementById("main");
-const prix = document.getElementById("finalPrice");
+const Element3 = document.getElementById('main');
+const prix = document.getElementById('finalPrice');
 
 if (localStorage.length > 0) {
 
