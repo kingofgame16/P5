@@ -4,7 +4,6 @@ const Element3 = document.getElementById("main");
 const prix = document.getElementById("finalPrice");
 
 if (localStorage.length > 0) {
-    prix.innerHTML = calculPrixPanier() + " € (euros)"; 
 
     data.forEach((objet) => {
         Element3.innerHTML += `
@@ -33,24 +32,6 @@ if (localStorage.length > 0) {
             <img class="center-block gif" alt="" src="images/polizas_gif.gif" />
             <p class="text-center lead">Votre panier est vide :'(</p>
         </div>`;
-};
-
-function calculPrixPanier() {
-    let totalPriceItem = data.reduce((accumulator, item) => {
-        return accumulator + item.totalPrice;
-    }, 0);
-
-    return totalPriceItem;
-};
-
-function deleteItem(_id) {
-    const lsUpdate = data.filter((objet) => objet._id !== _id);
-    localStorage.setItem("basket", JSON.stringify(lsUpdate));
-
-    if (lsUpdate == 0) {
-        localStorage.clear();
-    }
-    document.location.href = "panier.html";
 };
 
 
