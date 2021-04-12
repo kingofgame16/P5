@@ -1,9 +1,11 @@
-//let basket = JSON.parse(localStorage.getItem('basket'));
+let basket = JSON.parse(localStorage.getItem('basket'));
 
-const main = document.querySelector('#main')
-console.log(main);
-const basketTabElement = document.querySelector('#basket');
-console.log(basketTabElement);
+const basketTabElement = document.querySelector('.basket');
+
+if(basket !== null){
+    basketTabElement.classList.replace('invisible','visible')
+    document.querySelector('.etatPanier').classList.replace('visible','invisible')
+}
 
 
 
