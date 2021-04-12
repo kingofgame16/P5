@@ -1,8 +1,13 @@
-let data = JSON.parse(localStorage.getItem('basket'));
+//let basket = JSON.parse(localStorage.getItem('basket'));
 
-const Element3 = document.getElementById('main');
+const main = document.querySelector('#main')
+console.log(main);
+const basketTabElement = document.querySelector('#basket');
+console.log(basketTabElement);
 
-if(data === null){
+
+
+/* if(data === null){
     const EmptyBasket = `
     <div class="container-fluid">
         <img class="center-block gif" alt="" src="images/polizas_gif.gif" />
@@ -39,7 +44,7 @@ if(k == data.length){
 
     Element3.innerHTML = structurePanier;
 }
-}
+} */
 
 
 
