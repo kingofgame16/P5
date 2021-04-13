@@ -31,12 +31,28 @@ let tableau = document.querySelector("tbody");
         varnishProduct.textContent = basket[i].varnish;
 
         let priceProduct = document.createElement('td');
-        priceProduct.textContent = basket[i].price;
+        priceProduct.textContent = basket[i].price/100 + " " + "euros";
 
         let suppTab = document.createElement("button");
         suppTab.innerHTML = "Delete";
         suppTab.classList.add("btn", "btn-danger");
-        
+        suppTab.onclick = deleteArticle;
+
+        function deleteArticle (i) {
+            if (basket.length >= 2) {
+                alert('Le produit a été retiré du panier !');
+                let index = basket.indexOf(panier[i]);
+                basket.splice(index, 1);
+                localStorage.setItem('basket', JSON.stringify(basket));
+                location.reload();
+            } else if (basket.length === 1) {
+                alert('Le produit a été retiré du panier !');
+                localStorage.removeItem("basket");
+                location.reload();
+                changeDisplay();
+                panierVide.classList.add("d-block");
+            }
+        }
 
         let ligneTableau = document.createElement('tr');
         ligneTableau.appendChild(indexLigne);
