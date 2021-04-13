@@ -50,7 +50,7 @@ let tableau = document.querySelector("tbody");
                 localStorage.removeItem("basket");
                 location.reload();
                 changeDisplay();
-                panierVide.classList.add("d-block");
+                basket.classList.add("d-block");
             }
         }
 
