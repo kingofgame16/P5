@@ -63,3 +63,16 @@ let tableau = document.querySelector("tbody");
         tableau.appendChild(ligneTableau);
         panierPart.appendChild(tableau);
     }
+
+    const prixInHtml = document.getElementById("finalPrice");
+    if (localStorage.length > 0) {
+        prixInHtml.innerHTML = calculPrixPanier() + " € (euros)";
+        function calculPrixPanier() {
+            let totalPriceItem = basket.reduce((accumulator, item) => {
+                return accumulator + item.totalPrice;
+            }, 0);
+        
+            return totalPriceItem;
+        };
+    
+    }
