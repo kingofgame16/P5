@@ -41,7 +41,7 @@ let tableau = document.querySelector("tbody");
         function deleteArticle (i) {
             if (basket.length >= 2) {
                 alert('Le produit a été retiré du panier !');
-                let index = basket.indexOf(panier[i]);
+                let index = basket.indexOf(basket[i]);
                 basket.splice(index, 1);
                 localStorage.setItem('basket', JSON.stringify(basket));
                 location.reload();
@@ -54,6 +54,15 @@ let tableau = document.querySelector("tbody");
             }
         }
 
+        function calculPrix(product) {
+            let totalPrice = 0;
+            for (let i = 0; i < product.length; i++) {
+                totalPrice += product[i].price;
+            }}
+
+
+
+
         let ligneTableau = document.createElement('tr');
         ligneTableau.appendChild(indexLigne);
         ligneTableau.appendChild(nameProduct);
@@ -64,21 +73,3 @@ let tableau = document.querySelector("tbody");
         tableau.appendChild(ligneTableau);
         panierPart.appendChild(tableau);
     }
-
-
-
-
-
-
-
-
-
-
-
-/* function calculePrice(priceProdUnit) {
-    let quantites = document.getElementById('quantiteProduit');
-    quantites.addEventListener('change', (event) => {
-        const result = document.getElementById('totalPrice');
-        result.textContent = `${priceProdUnit}` * `${event.target.value}`;
-    })
-} */
