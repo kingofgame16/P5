@@ -69,7 +69,7 @@ let tableau = document.querySelector("tbody");
         prixInHtml.innerHTML = calculPrixPanier() + " € (euros)";
         function calculPrixPanier() {
             let totalPriceItem = basket.reduce((accumulator, item) => {
-                return accumulator + item.price/100*quantity;
+                return accumulator + item.price/100 * item.quantity;
             }, 0);
         
             return totalPriceItem;
