@@ -28,6 +28,8 @@ fetch(`https://ab-p5-api.herokuapp.com/api/furniture/${params.get('id')}`)
                 <h2>${data.name}</h2>
                 <p>${data.description}</p>
                 <form>
+                <label for="quantiteProduit">Quantité:</label>
+                        <input id ="quantiteProduit" type="number" min="1" value="1"/>
                         <div class="col-auto my-1 pb-5 mt-4">
                             <label class="mr-sm-2" for="inlineFormCustomSelect">Vernis</label>
                             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
@@ -72,4 +74,15 @@ const addLocalStorage = (product) => {
 
     window.location.href = 'panier.html';
 }
-}
+
+calculePrice(priceProdUnit)
+
+function calculePrice(priceProdUnit) {
+    let quantites = document.getElementById('quantiteProduit');
+    quantites.addEventListener('change', (event) => {
+        const result = document.getElementById('totalPrice');
+        result.textContent = `${priceProdUnit}` * `${event.target.value}`;
+    });
+
+
+}}
