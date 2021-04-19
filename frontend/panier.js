@@ -21,8 +21,8 @@ let tableau = document.querySelector("tbody");
     
     for (let i = 0; i < basket.length; i++) {
 
-        let indexLigne = document.createElement('th','articleImage');
-        indexLigne.textContent = basket[i].imageUrl;
+        let imageProduct = document.createElement('th','indexImage');
+        imageProduct.textContent = basket[i].imageUrl;
 
         let nameProduct = document.createElement('td');
         nameProduct.textContent = basket[i].name;
@@ -54,7 +54,7 @@ let tableau = document.querySelector("tbody");
             }
         }
         let ligneTableau = document.createElement('tr');
-        ligneTableau.appendChild(indexLigne);
+        ligneTableau.appendChild(imageProduct);
         ligneTableau.appendChild(nameProduct);
         ligneTableau.appendChild(quantityProduct);
         ligneTableau.appendChild(priceProduct);
