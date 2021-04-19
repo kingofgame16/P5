@@ -34,7 +34,7 @@ let tableau = document.querySelector('tbody');
         priceProduct.textContent = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(basket[i].price/100) ;
 
         let subTotal = document.createElement('td');
-        subTotal.textContent = basket[i].price/100*basket[i].quantity + " " + "euros";
+        subTotal.textContent =  new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(basket[i].price/100*basket[i].quantity) ;
 
         let suppTab = document.createElement('button');
         suppTab.innerHTML = 'Delete';
