@@ -1,6 +1,6 @@
 const Element1 = document.getElementById('main'); //récupération id=main
 
-fetch('https://ab-p5-api.herokuapp.com/api/furniture') //fetch sur l'url de l'API
+fetch('http://localhost:3000/api/furniture') //fetch sur l'url de l'API
     .then(response => { // me renvoie un premiere prommesse
         if (response.ok) {
             return response.json() // Si response ok, retourne un objet json

@@ -3,7 +3,7 @@ const params = new URLSearchParams(window.location.search);
     
     
 //j'injecte l'id du produit clické dans le fetch
-fetch(`https://ab-p5-api.herokuapp.com/api/furniture/${params.get('id')}`)
+fetch(`http://localhost:3000/api/furniture/${params.get('id')}`)
 .then(response => {
     if (response.ok) {
         return response.json()
