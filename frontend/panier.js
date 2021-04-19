@@ -1,3 +1,5 @@
+'use strict';
+
 let basket = JSON.parse(localStorage.getItem('basket'));
 let panierPart = document.querySelector('table');
 
@@ -18,11 +20,7 @@ let tableau = document.querySelector("tbody");
         productIds.push(basket[i].id);
     }
 
-    
     for (let i = 0; i < basket.length; i++) {
-
-        let imageProduct = document.createElement('th','indexImage');
-        imageProduct.textContent = basket[i].imageUrl;
 
         let nameProduct = document.createElement('td');
         nameProduct.textContent = basket[i].name;
@@ -31,11 +29,14 @@ let tableau = document.querySelector("tbody");
         quantityProduct.textContent = basket[i].quantity;
 
         let priceProduct = document.createElement('td');
-        priceProduct.textContent = basket[i].price/100*basket[i].quantity + " " + "euros";
+        priceProduct.textContent = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(basket[i].price/100) ;
+
+        let subTotal = document.createElement('td');
+        subTotal.textContent = basket[i].price/100*basket[i].quantity + " " + "euros";
 
         let suppTab = document.createElement("button");
         suppTab.innerHTML = "Delete";
-        suppTab.classList.add("btn", "btn-danger");
+        suppTab.classList.add("btn", "btn-danger","text-reset");
         suppTab.onclick = deleteArticle;
 
         function deleteArticle (i) {
@@ -54,10 +55,10 @@ let tableau = document.querySelector("tbody");
             }
         }
         let ligneTableau = document.createElement('tr');
-        ligneTableau.appendChild(imageProduct);
         ligneTableau.appendChild(nameProduct);
         ligneTableau.appendChild(quantityProduct);
         ligneTableau.appendChild(priceProduct);
+        ligneTableau.appendChild(subTotal)
         ligneTableau.appendChild(suppTab);
 
         tableau.appendChild(ligneTableau);
@@ -98,45 +99,44 @@ form.addEventListener("submit", (e) => {
     };
 
     const products = []; 
-    const donnees = { contact, products }; 
+    
 
     basket.forEach((furniture) => {
         products.push(furniture._id);
     });
+
+    const donnees = { contact, products };
 
     const options = {
         method: "POST",
         body: JSON.stringify(donnees),
         headers: {
             "Content-Type": "application/json",
+            "Accept": "application/json",
         },
     };
 
-    if (firstname == "" || lastname == "" || address == "" || city == "" || email == "") {
-        alert("Tous les champs doivent êtres remplis !")
-
-    } else {
-        fetch("https://ab-p5-api.herokuapp.com/api/furniture", options)
-            // reçoit les données du back
+    
+        fetch("http://localhost:3000/api/furniture/order", options)
             .then(response => { // me renvoie un premiere prommesse
                 if (response.ok) {
-                    return response.json() // Si response ok, retourne un objet json
+                    return response.json()
                 } else {
                     Promise.reject(response.status); // sinon, me retroune la cause de l'echec
                 };
             })
 
         // traitement pour l'obtention du numéro de commmande
-        .then((datas) => {
-            const orderId = datas.orderId;
-
-            window.location.href = `confirm.html?ncomm=${orderId}`;
+        .then((data) => {
+            //const orderId = data.orderId;
+console.log(data);
+            //window.location.href = `confirm.html=${orderId}`;
 
         })
 
         .catch((error) => {
             alert(error);
         });
-    }
+    
 
 });
