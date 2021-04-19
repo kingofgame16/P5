@@ -5,6 +5,8 @@ let panierPart = document.querySelector('table');
 
 const basketTabElement = document.querySelector('.basket');
 
+let totalPrice = 0;
+
 //Panier vide
 if(basket !== null){
     basketTabElement.classList.replace('invisible','visible')
@@ -12,7 +14,7 @@ if(basket !== null){
 }
 
 //Panier non vide, affichage des produits localstorage
-let tableau = document.querySelector("tbody");
+let tableau = document.querySelector('tbody');
 
     let productIds = [];
 
@@ -34,9 +36,9 @@ let tableau = document.querySelector("tbody");
         let subTotal = document.createElement('td');
         subTotal.textContent = basket[i].price/100*basket[i].quantity + " " + "euros";
 
-        let suppTab = document.createElement("button");
-        suppTab.innerHTML = "Delete";
-        suppTab.classList.add("btn", "btn-danger","text-reset");
+        let suppTab = document.createElement('button');
+        suppTab.innerHTML = 'Delete';
+        suppTab.classList.add('btn', 'btn-danger','text-reset');
         suppTab.onclick = deleteArticle;
 
         function deleteArticle (i) {
@@ -48,10 +50,10 @@ let tableau = document.querySelector("tbody");
                 location.reload();
             } else if (basket.length === 1) {
                 alert('Le produit a été retiré du panier !');
-                localStorage.removeItem("basket");
+                localStorage.removeItem('basket');
                 location.reload();
                 changeDisplay();
-                basket.classList.add("d-block");
+                basket.classList.add('d-block');
             }
         }
         let ligneTableau = document.createElement('tr');
@@ -65,19 +67,19 @@ let tableau = document.querySelector("tbody");
         panierPart.appendChild(tableau);
     }
 
-    const prixInHtml = document.getElementById("finalPrice");
-    if (basket.length > 0) {
-        prixInHtml.innerHTML = calculPrixPanier() + " € (euros)";
-        function calculPrixPanier() {
-            let totalPriceItem = basket.reduce((accumulator, item) => {
-                return accumulator + item.price/100 * item.quantity;
-            }, 0);
-        
-            return totalPriceItem;
-        };
+    const prixInHtml = document.getElementById('finalPrice');
     
-    }
+    function calculPrixPanier() {
+        totalPrice = basket.reduce((accumulator, item) => {
+            return accumulator + item.price/100 * item.quantity;
+        }, 0);
+    
+        return totalPrice;
+    };
 
+    if (basket.length > 0) {
+        prixInHtml.innerHTML = calculPrixPanier() + '€';
+    }
 
 const lastname = document.getElementById('lastName');
 const firstname = document.getElementById('firstName');
@@ -85,9 +87,9 @@ const address = document.getElementById('address');
 const city = document.getElementById('city');
 const email = document.getElementById('email');
 
-const form = document.querySelector("#submitForm");
+const form = document.querySelector('#submitForm');
 
-form.addEventListener("submit", (e) => {
+form.addEventListener('submit', (e) => {
     e.preventDefault()
 
     const contact = { // utilisateur à envoyer en objet en POST
@@ -98,45 +100,37 @@ form.addEventListener("submit", (e) => {
         email: email.value,
     };
 
-    const products = []; 
-    
+    const products = [];
 
     basket.forEach((furniture) => {
-        products.push(furniture._id);
+        products.push(furniture.id);
     });
 
     const donnees = { contact, products };
 
     const options = {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify(donnees),
         headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-        },
+            'Content-Type': 'application/json',
+        }
     };
-
     
-        fetch("http://localhost:3000/api/furniture/order", options)
-            .then(response => { // me renvoie un premiere prommesse
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    Promise.reject(response.status); // sinon, me retroune la cause de l'echec
-                };
-            })
-
-        // traitement pour l'obtention du numéro de commmande
-        .then((data) => {
-            //const orderId = data.orderId;
-console.log(data);
-            //window.location.href = `confirm.html=${orderId}`;
-
+    fetch('http://localhost:3000/api/furniture/order', options)
+        .then(response => { // me renvoie un premiere prommesse
+            if (response.ok) {
+                return response.json()
+            } else {
+                Promise.reject(response.status); // sinon, me retroune la cause de l'echec
+            };
         })
-
+        // traitement pour l'obtention du numéro de commmande
+        .then(data => {
+            localStorage.setItem('orderId', JSON.stringify([data.orderId]));
+            localStorage.setItem('totalPrice', JSON.stringify([totalPrice]));
+            //window.location.href = 'confirmation.html';
+        })
         .catch((error) => {
             alert(error);
         });
-    
-
 });
