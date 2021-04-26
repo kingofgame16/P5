@@ -30,7 +30,7 @@
             </div>
         </header>
 
-        <main class="basket invisible">
+        <main class="container-fluid-nav basket invisible">
             <div id="panier_part" class="row">
                 <table class="table">
                     <thead class="text-center">
@@ -52,23 +52,23 @@
             <form class="container" method="POST" id="submitForm">
                 <div class="mb-3">
                     <label for="firstName" class="form-label">Prénom :</label>
-                    <input type="text" name="prenom" placeholder=" Votre Prénom" class="form-control" minlength="2" id="firstName">
+                    <input type="text" name="prenom" placeholder=" Votre Prénom" class="form-control" minlength="2" id="firstName" required>
                 </div>    
                 <div class="mb-3">
                     <label for="lastName" class="form-label">Nom :</label>
-                    <input type="text" name="nom" placeholder="Votre Nom" class="form-control" minlength="3" id="lastName">
+                    <input type="text" name="nom" placeholder="Votre Nom" class="form-control" minlength="3" id="lastName" required>
                 </div>   
                 <div class="mb-3">
                     <label for="address" class="form-label">Adresse :</label>
-                    <input type="text" name="adresse" placeholder="Votre Adresse" class="form-control" minlength="8" id="address">
+                    <input type="text" name="adresse" placeholder="Votre Adresse" class="form-control" minlength="8" id="address" required>
                 </div>
                 <div class="mb-3">
                     <label for="city" class="form-label">Ville :</label>
-                    <input type="text" name="ville" placeholder="Votre Ville" class="form-control" minlength="1" id="city">
+                    <input type="text" name="ville" placeholder="Votre Ville" class="form-control" minlength="1" id="city" required>
                 </div>    
                 <div class="mb-3">
                     <label for="email" class="form-label">Email :</label>
-                    <input type="email" class="form-control" placeholder="Votre email" id="email">
+                    <input type="email" class="form-control" placeholder="Votre email" id="email" required>
                 </div>
                 <div class="form-group">
                     <button id="btnCom" type="submit" class="btn btn-outline-info btn-block">Commander</button>
